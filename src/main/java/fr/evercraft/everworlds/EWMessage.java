@@ -1,4 +1,4 @@
-package fr.evercraft.everworldguard;
+package fr.evercraft.everworlds;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,7 +14,7 @@ import fr.evercraft.everapi.plugin.file.EnumMessage;
 
 public class EWMessage extends EMessage {
 
-	public EWMessage(final EverWorldGuard plugin) {
+	public EWMessage(final EverWorlds plugin) {
 		super(plugin, EWMessages.values());
 	}
 	

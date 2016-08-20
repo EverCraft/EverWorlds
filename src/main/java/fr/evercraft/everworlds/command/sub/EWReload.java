@@ -1,4 +1,4 @@
-package fr.evercraft.everworldguard.command.sub;
+package fr.evercraft.everworlds.command.sub;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,13 +12,13 @@ import org.spongepowered.api.text.format.TextColors;
 import fr.evercraft.everapi.EAMessage.EAMessages;
 import fr.evercraft.everapi.plugin.EChat;
 import fr.evercraft.everapi.plugin.command.ESubCommand;
-import fr.evercraft.everworldguard.EWCommand;
-import fr.evercraft.everworldguard.EWPermissions;
-import fr.evercraft.everworldguard.EverWorldGuard;
-import fr.evercraft.everworldguard.EWMessage.EWMessages;
+import fr.evercraft.everworlds.EWCommand;
+import fr.evercraft.everworlds.EWPermissions;
+import fr.evercraft.everworlds.EverWorlds;
+import fr.evercraft.everworlds.EWMessage.EWMessages;
 
-public class EWReload extends ESubCommand<EverWorldGuard> {
-	public EWReload(final EverWorldGuard plugin, final EWCommand command) {
+public class EWReload extends ESubCommand<EverWorlds> {
+	public EWReload(final EverWorlds plugin, final EWCommand command) {
         super(plugin, command, "reload");
     }
 	

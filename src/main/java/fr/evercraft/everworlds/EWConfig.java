@@ -1,4 +1,4 @@
-package fr.evercraft.everworldguard;
+package fr.evercraft.everworlds;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +11,7 @@ import fr.evercraft.everapi.plugin.file.EMessage;
 
 public class EWConfig extends EConfig {
 
-	public EWConfig(final EverWorldGuard plugin) {
+	public EWConfig(final EverWorlds plugin) {
 		super(plugin);
 	}
 	

@@ -1,34 +1,28 @@
-package fr.evercraft.everworldguard;
+package fr.evercraft.everworlds;
 
 import org.spongepowered.api.plugin.Dependency;
 import org.spongepowered.api.plugin.Plugin;
 
 import fr.evercraft.everapi.plugin.EPlugin;
-import fr.evercraft.everworldguard.command.sub.EWReload;
-import fr.evercraft.everworldguard.service.EWorldGuardService;
+import fr.evercraft.everworlds.command.sub.EWReload;
 
-@Plugin(id = "fr.evercraft.everworldguard", 
-		name = "EverWorldGuard", 
+@Plugin(id = "fr.evercraft.everworlds", 
+		name = "EverWorlds", 
 		version = "1.2", 
-		description = "WorldGuard",
+		description = "EverWorlds",
 		url = "http://evercraft.fr/",
 		authors = {"rexbut"},
 		dependencies = {
 		    @Dependency(id = "fr.evercraft.everapi", version = "1.2")
 		})
-public class EverWorldGuard extends EPlugin {
+public class EverWorlds extends EPlugin {
 	private EWConfig configs;
 	private EWMessage messages;
-	
-	private EWorldGuardService service;
 	
 	@Override
 	protected void onPreEnable() {		
 		this.configs = new EWConfig(this);
 		this.messages = new EWMessage(this);
-		
-		this.service = new EWorldGuardService(this);
-		//this.getGame().getServiceManager().setProvider(this, WorldGuardService.class, this.service);
 		
 		this.getGame().getEventManager().registerListeners(this, new EWListener(this));
 	}
@@ -57,9 +51,5 @@ public class EverWorldGuard extends EPlugin {
 	
 	public EWConfig getConfigs() {
 		return this.configs;
-	}
-	
-	public EWorldGuardService getService() {
-		return this.service;
 	}
 }
