@@ -21,6 +21,7 @@ import org.spongepowered.api.plugin.Plugin;
 
 import fr.evercraft.everapi.plugin.EPlugin;
 import fr.evercraft.evermultiworlds.command.sub.EWCreate;
+import fr.evercraft.evermultiworlds.command.sub.EWImport;
 import fr.evercraft.evermultiworlds.command.sub.EWReload;
 
 @Plugin(id = "fr.evercraft.evermultiworlds", 
@@ -50,6 +51,7 @@ public class EverMultiWorlds extends EPlugin {
 		
 		command.add(new EWReload(this, command));
 		command.add(new EWCreate(this, command));
+		command.add(new EWImport(this, command));
 	}
 	
 	@Override

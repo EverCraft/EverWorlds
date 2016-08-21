@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.text.Text;
@@ -58,12 +57,12 @@ public class EWCreate extends ESubCommand<EverMultiWorlds> {
 		if(args.size() == 1) {
 			suggest.add("world_name");
 		} else if(args.size() == 2) {
-			for(CatalogType value : this.plugin.getGame().getRegistry().getAllOf(DimensionType.class)) {
+			for(DimensionType value : this.plugin.getGame().getRegistry().getAllOf(DimensionType.class)) {
 				suggest.add(value.getName().toUpperCase());
 			}
 		} else if(args.size() == 3) {
-			for(CatalogType value : this.plugin.getGame().getRegistry().getAllOf(GeneratorType.class)) {
-				suggest.add(value.getId());
+			for(GeneratorType value : this.plugin.getGame().getRegistry().getAllOf(GeneratorType.class)) {
+				suggest.add(value.getName().toUpperCase());
 			}
 		} else if(args.size() == 4) {
 			suggest.add("0000000000000000000");
@@ -189,8 +188,7 @@ public class EWCreate extends ESubCommand<EverMultiWorlds> {
 											.build());
 		} catch (IOException e) {
 			
-		}
-		
+		}		
 		return true;
 	}
 	
