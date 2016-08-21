@@ -14,23 +14,23 @@
  * You should have received a copy of the GNU General Public License
  * along with EverWorlds.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.evercraft.everworlds;
+package fr.evercraft.evermultiworlds;
 
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.text.Text;
 
 import fr.evercraft.everapi.plugin.command.EParentCommand;
-import fr.evercraft.everworlds.EWMessage.EWMessages;
+import fr.evercraft.evermultiworlds.EWMessage.EWMessages;
 
-public class EWCommand extends EParentCommand<EverWorlds> {
+public class EWCommand extends EParentCommand<EverMultiWorlds> {
 	
-	public EWCommand(final EverWorlds plugin) {
-        super(plugin, "everworldguard", "worldguard", "everwg", "wg");
+	public EWCommand(final EverMultiWorlds plugin) {
+        super(plugin, "evermultiworlds", "multiworlds", "mw");
     }
 	
 	@Override
 	public boolean testPermission(final CommandSource source) {
-		return source.hasPermission(EWPermissions.EVERWORLDGUARD.get());
+		return source.hasPermission(EWPermissions.EVERMULTIWORLDS.get());
 	}
 
 	@Override

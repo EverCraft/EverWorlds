@@ -14,24 +14,25 @@
  * You should have received a copy of the GNU General Public License
  * along with EverWorlds.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.evercraft.everworlds;
+package fr.evercraft.evermultiworlds;
 
 import org.spongepowered.api.plugin.Dependency;
 import org.spongepowered.api.plugin.Plugin;
 
 import fr.evercraft.everapi.plugin.EPlugin;
-import fr.evercraft.everworlds.command.sub.EWReload;
+import fr.evercraft.evermultiworlds.command.sub.EWCreate;
+import fr.evercraft.evermultiworlds.command.sub.EWReload;
 
-@Plugin(id = "fr.evercraft.everworlds", 
-		name = "EverWorlds", 
+@Plugin(id = "fr.evercraft.evermultiworlds", 
+		name = "EverMultiWorlds", 
 		version = "1.2", 
-		description = "EverWorlds",
+		description = "MultiWorlds",
 		url = "http://evercraft.fr/",
 		authors = {"rexbut"},
 		dependencies = {
 		    @Dependency(id = "fr.evercraft.everapi", version = "1.2")
 		})
-public class EverWorlds extends EPlugin {
+public class EverMultiWorlds extends EPlugin {
 	private EWConfig configs;
 	private EWMessage messages;
 	
@@ -48,6 +49,11 @@ public class EverWorlds extends EPlugin {
 		EWCommand command = new EWCommand(this);
 		
 		command.add(new EWReload(this, command));
+		command.add(new EWCreate(this, command));
+	}
+	
+	@Override
+	protected void onStartServer() {
 	}
 
 	protected void onReload(){

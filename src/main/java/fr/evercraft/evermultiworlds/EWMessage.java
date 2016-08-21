@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with EverWorlds.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.evercraft.everworlds;
+package fr.evercraft.evermultiworlds;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,13 +30,25 @@ import fr.evercraft.everapi.plugin.file.EnumMessage;
 
 public class EWMessage extends EMessage {
 
-	public EWMessage(final EverWorlds plugin) {
+	public EWMessage(final EverMultiWorlds plugin) {
 		super(plugin, EWMessages.values());
 	}
 	
 	public enum EWMessages implements EnumMessage {
-		PREFIX("prefix", 				"[&4Ever&6&lWorldGuard&f] "),
-		DESCRIPTION("description",		"Gestionnaire des régions");
+		PREFIX("prefix", 				"[&4Ever&6&lWorlds&f] "),
+		DESCRIPTION("description",		"Gestionnaire des mondes"),
+		
+		
+		CREATE_DESCRIPTION("create.description",		"Création d'un monde"),
+		CREATE_PLAYER("create.player",		"&7Vous avez créé le monde <world>."),
+		CREATE_WORLD("create.world",		"&6<world>"),
+		CREATE_WORLD_HOVER("create.worldHover",	  "&7Dimension : &6 <dimension>[RT]"
+												+ "&7Generator : &6 <generator>[RT]"
+												+ "&7Seed : &6 <seed>"),
+		CREATE_ERROR_NAME("create.errorName",				"&c<world>"),
+		CREATE_ERROR_DIMENSION("create.errorDimension",		"&c<dimension>"),
+		CREATE_ERROR_GENERATOR("create.errorGenerator",		"&c<generator>"),
+		CREATE_ERROR_SEED("create.errorSeed",				"&c<seed>"),;
 		
 		private final String path;
 	    private final Object french;

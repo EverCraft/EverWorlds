@@ -14,13 +14,8 @@
  * You should have received a copy of the GNU General Public License
  * along with EverWorlds.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.evercraft.everworlds;
+package fr.evercraft.evermultiworlds.service;
 
-public class EWListener {
-	@SuppressWarnings("unused")
-	private final EverWorlds plugin;
-	
-	public EWListener(final EverWorlds plugin) {
-		this.plugin = plugin;
-	}
+public class EWorldService {
+
 }

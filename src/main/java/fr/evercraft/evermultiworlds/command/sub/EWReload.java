@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with EverWorlds.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.evercraft.everworlds.command.sub;
+package fr.evercraft.evermultiworlds.command.sub;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,13 +28,13 @@ import org.spongepowered.api.text.format.TextColors;
 import fr.evercraft.everapi.EAMessage.EAMessages;
 import fr.evercraft.everapi.plugin.EChat;
 import fr.evercraft.everapi.plugin.command.ESubCommand;
-import fr.evercraft.everworlds.EWCommand;
-import fr.evercraft.everworlds.EWPermissions;
-import fr.evercraft.everworlds.EverWorlds;
-import fr.evercraft.everworlds.EWMessage.EWMessages;
+import fr.evercraft.evermultiworlds.EWCommand;
+import fr.evercraft.evermultiworlds.EWPermissions;
+import fr.evercraft.evermultiworlds.EverMultiWorlds;
+import fr.evercraft.evermultiworlds.EWMessage.EWMessages;
 
-public class EWReload extends ESubCommand<EverWorlds> {
-	public EWReload(final EverWorlds plugin, final EWCommand command) {
+public class EWReload extends ESubCommand<EverMultiWorlds> {
+	public EWReload(final EverMultiWorlds plugin, final EWCommand command) {
         super(plugin, command, "reload");
     }
 	

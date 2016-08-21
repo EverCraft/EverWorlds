@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with EverWorlds.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.evercraft.everworlds;
+package fr.evercraft.evermultiworlds;
 
 import org.spongepowered.api.command.CommandSource;
 
@@ -23,12 +23,30 @@ import com.google.common.base.Preconditions;
 import fr.evercraft.everapi.plugin.EnumPermission;
 
 public enum EWPermissions implements EnumPermission {
-	EVERWORLDGUARD("command"),
+	EVERMULTIWORLDS("command"),
 	
 	HELP("help"),
-	RELOAD("reload");
+	RELOAD("reload"),
 	
-	private final static String prefix = "everworlds";
+	CREATE("create"),
+	DELETE("delete"),
+	
+	IMPORT("import"),
+	COPY("copy"),
+	
+	LOAD("load"),
+	UNLOAD("unload"),
+	
+	RENAME("rename"),
+	SETSPAWN("setspawn"),
+	PROPERTIES("properties"),
+	
+	TELEPORT("teleport"),
+	
+	LIST("list"),
+	INFO("info");
+	
+	private final static String prefix = "evermultiworlds";
 	
 	private final String permission;
     
