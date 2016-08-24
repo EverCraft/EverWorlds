@@ -49,7 +49,7 @@ public class EWImport extends ESubCommand<EverMultiWorlds> {
 	
 	public List<String> subTabCompleter(final CommandSource source, final List<String> args) throws CommandException {
 		List<String> suggest = new ArrayList<String>();
-		if(args.size() == 1) {
+		if (args.size() == 1) {
 			suggest.add("world_name");
 		}
 		return suggest;
@@ -65,7 +65,7 @@ public class EWImport extends ESubCommand<EverMultiWorlds> {
 	public boolean subExecute(final CommandSource source, final List<String> args) {
 		boolean resultat = false;
 		
-		if(args.size() == 1) {
+		if (args.size() == 1) {
 			resultat = this.command(source, args.get(0));
 		} else {
 			source.sendMessage(this.help(source));
@@ -77,7 +77,7 @@ public class EWImport extends ESubCommand<EverMultiWorlds> {
 	private boolean command(final CommandSource player, String name) {        
 		Optional<World> world = this.plugin.getEServer().loadWorld(name);
 		// Si le monde n'existe pas
-		if(world.isPresent()) {
+		if (world.isPresent()) {
 			player.sendMessage(EChat.of("World load : " + world.get().getName()));
 		} else {
 			player.sendMessage(EChat.of("World empty"));

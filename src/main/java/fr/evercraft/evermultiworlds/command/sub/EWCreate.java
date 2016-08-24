@@ -54,17 +54,19 @@ public class EWCreate extends ESubCommand<EverMultiWorlds> {
 	
 	public List<String> subTabCompleter(final CommandSource source, final List<String> args) throws CommandException {
 		List<String> suggest = new ArrayList<String>();
-		if(args.size() == 1) {
+		if (args.size() == 1) {
 			suggest.add("world_name");
-		} else if(args.size() == 2) {
-			for(DimensionType value : this.plugin.getGame().getRegistry().getAllOf(DimensionType.class)) {
+		} else if (args.size() == 2) {
+			for (DimensionType value : this.plugin.getGame().getRegistry().getAllOf(DimensionType.class)) {
 				suggest.add(value.getName().toUpperCase());
 			}
-		} else if(args.size() == 3) {
-			for(GeneratorType value : this.plugin.getGame().getRegistry().getAllOf(GeneratorType.class)) {
-				suggest.add(value.getName().toUpperCase());
+		} else if (args.size() == 3) {
+			for (GeneratorType value : this.plugin.getGame().getRegistry().getAllOf(GeneratorType.class)) {
+				if (!value.getId().equalsIgnoreCase("debug_all_block_states") && !value.getId().equalsIgnoreCase("default_1_1")) {
+					suggest.add(value.getId().toUpperCase());
+				}
 			}
-		} else if(args.size() == 4) {
+		} else if (args.size() == 4) {
 			suggest.add("0000000000000000000");
 		}
 		return suggest;
@@ -80,13 +82,13 @@ public class EWCreate extends ESubCommand<EverMultiWorlds> {
 	public boolean subExecute(final CommandSource source, final List<String> args) {
 		boolean resultat = false;
 		
-		if(args.size() == 1) {
+		if (args.size() == 1) {
 			resultat = this.command(source, args.get(0), Optional.empty(), Optional.empty(), Optional.empty());
-		} else if(args.size() == 2) {
+		} else if (args.size() == 2) {
 			resultat = this.command(source, args.get(0), Optional.of(args.get(1)), Optional.empty(), Optional.empty());
-		} else if(args.size() == 3) {
+		} else if (args.size() == 3) {
 			resultat = this.command(source, args.get(0), Optional.of(args.get(1)), Optional.of(args.get(2)), Optional.empty());
-		} else if(args.size() == 4) {
+		} else if (args.size() == 4) {
 			resultat = this.command(source, args.get(0), Optional.of(args.get(1)), Optional.of(args.get(2)), Optional.of(args.get(3)));
 		} else {
 			source.sendMessage(this.help(source));
@@ -99,25 +101,25 @@ public class EWCreate extends ESubCommand<EverMultiWorlds> {
 																			Optional<String> generator_name,
 																			Optional<String> seed_name) {
 		// Si le monde n'existe pas
-		if(!this.plugin.getEServer().getWorld(name).isPresent()) {
+		if (!this.plugin.getEServer().getWorld(name).isPresent()) {
 			Optional<DimensionType> dimension = Optional.empty();
 			Optional<GeneratorType> generator = Optional.empty();
 			Optional<Long> seed  = Optional.empty();
 			
 			// Si le type de la dimension est présent
-			if(dimension_name.isPresent()) {
+			if (dimension_name.isPresent()) {
 				dimension = this.plugin.getGame().getRegistry().getType(DimensionType.class, dimension_name.get());
 				// Si le type de la dimension est correct
-				if(dimension.isPresent()) {
+				if (dimension.isPresent()) {
 					
 					// Si le type de génération est présent
-					if(generator_name.isPresent()) {
+					if (generator_name.isPresent()) {
 						generator = this.plugin.getGame().getRegistry().getType(GeneratorType.class, generator_name.get());
 						// Si le type de la génération est correct
-						if(generator.isPresent()) {
+						if (generator.isPresent()) {
 							
 							// Si le seed est présent
-							if(seed_name.isPresent()) {
+							if (seed_name.isPresent()) {
 								try {
 									seed = Optional.of(Long.parseLong(seed_name.get()));
 									return this.commandCreate(player, name, dimension, generator, seed);
@@ -166,15 +168,15 @@ public class EWCreate extends ESubCommand<EverMultiWorlds> {
 										.loadsOnStartup(true)
 										.keepsSpawnLoaded(true);
 		
-		if(dimension.isPresent()) {
+		if (dimension.isPresent()) {
 			build.dimension(dimension.get());
 		}
 		
-		if(generator.isPresent()) {
+		if (generator.isPresent()) {
 			build.generator(generator.get());
 		}
 		
-		if(seed.isPresent()) {
+		if (seed.isPresent()) {
 			build.seed(seed.get());
 		}
 
