@@ -32,7 +32,8 @@ import fr.evercraft.evermultiworlds.command.sub.EWReload;
 		url = "http://evercraft.fr/",
 		authors = {"rexbut"},
 		dependencies = {
-		    @Dependency(id = "everapi", version = EverAPI.VERSION)
+		    @Dependency(id = "everapi", version = EverAPI.VERSION),
+		    @Dependency(id = "spongeapi", version = EverAPI.SPONGEAPI_VERSION)
 		})
 public class EverMultiWorlds extends EPlugin {
 	private EWConfig configs;
