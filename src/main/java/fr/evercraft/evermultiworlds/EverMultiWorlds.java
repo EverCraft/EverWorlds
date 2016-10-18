@@ -35,7 +35,7 @@ import fr.evercraft.evermultiworlds.command.sub.EWReload;
 		    @Dependency(id = "everapi", version = EverAPI.VERSION),
 		    @Dependency(id = "spongeapi", version = EverAPI.SPONGEAPI_VERSION)
 		})
-public class EverMultiWorlds extends EPlugin {
+public class EverMultiWorlds extends EPlugin<EverMultiWorlds> {
 	private EWConfig configs;
 	private EWMessage messages;
 	

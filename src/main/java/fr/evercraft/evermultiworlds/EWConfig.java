@@ -19,7 +19,7 @@ package fr.evercraft.evermultiworlds;
 import fr.evercraft.everapi.plugin.file.EConfig;
 import fr.evercraft.everapi.plugin.file.EMessage;
 
-public class EWConfig extends EConfig {
+public class EWConfig extends EConfig<EverMultiWorlds> {
 
 	public EWConfig(final EverMultiWorlds plugin) {
 		super(plugin);
