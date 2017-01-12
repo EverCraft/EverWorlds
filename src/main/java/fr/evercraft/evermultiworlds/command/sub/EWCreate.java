@@ -31,9 +31,7 @@ import org.spongepowered.api.world.GeneratorType;
 import org.spongepowered.api.world.WorldArchetype;
 import org.spongepowered.api.world.WorldArchetype.Builder;
 
-import fr.evercraft.everapi.plugin.EChat;
 import fr.evercraft.everapi.plugin.command.ESubCommand;
-import fr.evercraft.everapi.text.ETextBuilder;
 import fr.evercraft.evermultiworlds.EWCommand;
 import fr.evercraft.evermultiworlds.EWPermissions;
 import fr.evercraft.evermultiworlds.EverMultiWorlds;
@@ -125,8 +123,9 @@ public class EWCreate extends ESubCommand<EverMultiWorlds> {
 									return this.commandCreate(player, name, dimension, generator, seed);
 								// Le seed est incorrect
 								} catch(NumberFormatException e) {
-									player.sendMessage(EChat.of(EWMessages.PREFIX.get() + EWMessages.CREATE_ERROR_SEED.get()
-											.replaceAll("<seed>", seed_name.get())));
+									EWMessages.CREATE_ERROR_SEED.sender()
+										.replace("<seed>", seed_name.get())
+										.sendTo(player);
 								}
 							// Le nom, le type de dimension et le type de génération
 							} else {
@@ -135,8 +134,9 @@ public class EWCreate extends ESubCommand<EverMultiWorlds> {
 							
 						// Le type de la génération est incorrect
 						} else {
-							player.sendMessage(EChat.of(EWMessages.PREFIX.get() + EWMessages.CREATE_ERROR_GENERATOR.get()
-									.replaceAll("<generator>", generator_name.get())));
+							EWMessages.CREATE_ERROR_GENERATOR.sender()
+								.replace("<generator>", generator_name.get())
+								.sendTo(player);
 						}
 					// Le nom et le type de dimension
 					} else {
@@ -145,8 +145,9 @@ public class EWCreate extends ESubCommand<EverMultiWorlds> {
 					
 				// Le type de la dimension est incorrect
 				} else {
-					player.sendMessage(EChat.of(EWMessages.PREFIX.get() + EWMessages.CREATE_ERROR_DIMENSION.get()
-							.replaceAll("<dimension>", dimension_name.get())));
+					EWMessages.CREATE_ERROR_DIMENSION.sender()
+						.replace("<dimension>", dimension_name.get())
+						.sendTo(player);
 				}
 			// Uniquement le nom
 			} else {
@@ -154,8 +155,9 @@ public class EWCreate extends ESubCommand<EverMultiWorlds> {
 			}
 		// Un monde porte déjà ce nom
 		} else {
-			player.sendMessage(EChat.of(EWMessages.PREFIX.get() + EWMessages.CREATE_ERROR_NAME.get()
-					.replaceAll("<world>", name)));
+			EWMessages.CREATE_ERROR_NAME.sender()
+				.replace("<world>", name)
+				.sendTo(player);
 		}
 		return false;
 	}
@@ -184,10 +186,9 @@ public class EWCreate extends ESubCommand<EverMultiWorlds> {
 		WorldArchetype world = build.build(name, name);
 		try {
 			this.plugin.getEServer().loadWorld(this.plugin.getEServer().createWorldProperties(name, world));
-			player.sendMessage(ETextBuilder.toBuilder(EWMessages.PREFIX.get())
-											.append(EWMessages.CREATE_PLAYER.get())
-											.replace("<world>", this.getButtonPosition(world))
-											.build());
+			EWMessages.CREATE_PLAYER.sender()
+				.replace("<world>", () -> this.getButtonPosition(world))
+				.sendTo(player);
 		} catch (IOException e) {
 			
 		}		
@@ -195,12 +196,12 @@ public class EWCreate extends ESubCommand<EverMultiWorlds> {
 	}
 	
 	public Text getButtonPosition(final WorldArchetype world){
-		return EChat.of(EWMessages.CREATE_WORLD.get()
-				.replaceAll("<world>", world.getName())).toBuilder()
-					.onHover(TextActions.showText(EChat.of(EWMessages.CREATE_WORLD_HOVER.get()
-							.replaceAll("<dimension>", world.getDimensionType().getName().toUpperCase())
-							.replaceAll("<generator>", world.getGeneratorType().getName().toUpperCase())
-							.replaceAll("<seed>", String.valueOf(world.getSeed())))))
+		return EWMessages.CREATE_WORLD.getFormat()
+					.toText("<world>", world.getName()).toBuilder()
+					.onHover(TextActions.showText(EWMessages.CREATE_WORLD_HOVER.getFormat().toText(
+								"<dimension>", world.getDimensionType().getName().toUpperCase(),
+								"<generator>", world.getGeneratorType().getName().toUpperCase(),
+								"<seed>", String.valueOf(world.getSeed()))))
 					.build();
 	}
 }
