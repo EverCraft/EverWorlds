@@ -18,6 +18,7 @@ package fr.evercraft.evermultiworlds.command.sub;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,7 +51,7 @@ public class EWCreate extends ESubCommand<EverMultiWorlds> {
 		return EWMessages.CREATE_DESCRIPTION.getText();
 	}
 	
-	public List<String> subTabCompleter(final CommandSource source, final List<String> args) throws CommandException {
+	public Collection<String> subTabCompleter(final CommandSource source, final List<String> args) throws CommandException {
 		List<String> suggest = new ArrayList<String>();
 		if (args.size() == 1) {
 			suggest.add("world_name");
