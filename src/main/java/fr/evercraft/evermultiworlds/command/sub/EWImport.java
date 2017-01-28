@@ -16,7 +16,7 @@
  */
 package fr.evercraft.evermultiworlds.command.sub;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -49,11 +49,10 @@ public class EWImport extends ESubCommand<EverMultiWorlds> {
 	}
 	
 	public Collection<String> subTabCompleter(final CommandSource source, final List<String> args) throws CommandException {
-		List<String> suggest = new ArrayList<String>();
 		if (args.size() == 1) {
-			suggest.add("world_name");
+			return Arrays.asList("world_name");
 		}
-		return suggest;
+		return Arrays.asList();
 	}
 
 	public Text help(final CommandSource source) {

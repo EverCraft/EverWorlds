@@ -18,6 +18,7 @@ package fr.evercraft.evermultiworlds.command.sub;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -52,23 +53,26 @@ public class EWCreate extends ESubCommand<EverMultiWorlds> {
 	}
 	
 	public Collection<String> subTabCompleter(final CommandSource source, final List<String> args) throws CommandException {
-		List<String> suggest = new ArrayList<String>();
 		if (args.size() == 1) {
-			suggest.add("world_name");
+			return Arrays.asList("world_name");
 		} else if (args.size() == 2) {
+			List<String> suggests = new ArrayList<String>();
 			for (DimensionType value : this.plugin.getGame().getRegistry().getAllOf(DimensionType.class)) {
-				suggest.add(value.getName().toUpperCase());
+				suggests.add(value.getName().toUpperCase());
 			}
+			return suggests;
 		} else if (args.size() == 3) {
+			List<String> suggests = new ArrayList<String>();
 			for (GeneratorType value : this.plugin.getGame().getRegistry().getAllOf(GeneratorType.class)) {
 				if (!value.getId().equalsIgnoreCase("debug_all_block_states") && !value.getId().equalsIgnoreCase("default_1_1")) {
-					suggest.add(value.getId().toUpperCase());
+					suggests.add(value.getId().toUpperCase());
 				}
 			}
+			return suggests;
 		} else if (args.size() == 4) {
-			suggest.add("0000000000000000000");
+			return Arrays.asList("0000000000000000000");
 		}
-		return suggest;
+		return Arrays.asList();
 	}
 
 	public Text help(final CommandSource source) {
