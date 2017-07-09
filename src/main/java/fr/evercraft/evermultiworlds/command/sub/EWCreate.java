@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 
 import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.command.CommandSource;
@@ -52,7 +53,7 @@ public class EWCreate extends ESubCommand<EverMultiWorlds> {
 		return EWMessages.CREATE_DESCRIPTION.getText();
 	}
 	
-	public Collection<String> subTabCompleter(final CommandSource source, final List<String> args) throws CommandException {
+	public Collection<String> tabCompleter(final CommandSource source, final List<String> args) throws CommandException {
 		if (args.size() == 1) {
 			return Arrays.asList("world_name");
 		} else if (args.size() == 2) {
@@ -82,25 +83,23 @@ public class EWCreate extends ESubCommand<EverMultiWorlds> {
 					.build();
 	}
 	
-	public boolean subExecute(final CommandSource source, final List<String> args) {
-		boolean resultat = false;
-		
+	public CompletableFuture<Boolean> execute(final CommandSource source, final List<String> args) {
 		if (args.size() == 1) {
-			resultat = this.command(source, args.get(0), Optional.empty(), Optional.empty(), Optional.empty());
+			return this.command(source, args.get(0), Optional.empty(), Optional.empty(), Optional.empty());
 		} else if (args.size() == 2) {
-			resultat = this.command(source, args.get(0), Optional.of(args.get(1)), Optional.empty(), Optional.empty());
+			return this.command(source, args.get(0), Optional.of(args.get(1)), Optional.empty(), Optional.empty());
 		} else if (args.size() == 3) {
-			resultat = this.command(source, args.get(0), Optional.of(args.get(1)), Optional.of(args.get(2)), Optional.empty());
+			return this.command(source, args.get(0), Optional.of(args.get(1)), Optional.of(args.get(2)), Optional.empty());
 		} else if (args.size() == 4) {
-			resultat = this.command(source, args.get(0), Optional.of(args.get(1)), Optional.of(args.get(2)), Optional.of(args.get(3)));
+			return this.command(source, args.get(0), Optional.of(args.get(1)), Optional.of(args.get(2)), Optional.of(args.get(3)));
 		} else {
 			source.sendMessage(this.help(source));
 		}
 		
-		return resultat;
+		return CompletableFuture.completedFuture(false);
 	}
 	
-	private boolean command(final CommandSource player, String name,  Optional<String> dimension_name, 
+	private CompletableFuture<Boolean> command(final CommandSource player, String name,  Optional<String> dimension_name, 
 																			Optional<String> generator_name,
 																			Optional<String> seed_name) {
 		// Si le monde n'existe pas
@@ -164,10 +163,10 @@ public class EWCreate extends ESubCommand<EverMultiWorlds> {
 				.replace("<world>", name)
 				.sendTo(player);
 		}
-		return false;
+		return CompletableFuture.completedFuture(false);
 	}
 
-	private boolean commandCreate(final CommandSource player, String name,  Optional<DimensionType> dimension, 
+	private CompletableFuture<Boolean> commandCreate(final CommandSource player, String name,  Optional<DimensionType> dimension, 
 																			Optional<GeneratorType> generator,
 																			Optional<Long> seed) {
 		Builder build = WorldArchetype.builder()
@@ -197,7 +196,7 @@ public class EWCreate extends ESubCommand<EverMultiWorlds> {
 		} catch (IOException e) {
 			
 		}		
-		return true;
+		return CompletableFuture.completedFuture(true);
 	}
 	
 	public Text getButtonPosition(final WorldArchetype world){

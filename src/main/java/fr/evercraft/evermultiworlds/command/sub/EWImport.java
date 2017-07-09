@@ -20,6 +20,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 
 import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.command.CommandSource;
@@ -48,7 +49,7 @@ public class EWImport extends ESubCommand<EverMultiWorlds> {
 		return EWMessages.CREATE_DESCRIPTION.getText();
 	}
 	
-	public Collection<String> subTabCompleter(final CommandSource source, final List<String> args) throws CommandException {
+	public Collection<String> tabCompleter(final CommandSource source, final List<String> args) throws CommandException {
 		if (args.size() == 1) {
 			return Arrays.asList("world_name");
 		}
@@ -62,19 +63,17 @@ public class EWImport extends ESubCommand<EverMultiWorlds> {
 					.build();
 	}
 	
-	public boolean subExecute(final CommandSource source, final List<String> args) {
-		boolean resultat = false;
-		
+	public CompletableFuture<Boolean> execute(final CommandSource source, final List<String> args) {
 		if (args.size() == 1) {
-			resultat = this.command(source, args.get(0));
+			return this.command(source, args.get(0));
 		} else {
 			source.sendMessage(this.help(source));
 		}
 		
-		return resultat;
+		return CompletableFuture.completedFuture(false);
 	}
 	
-	private boolean command(final CommandSource player, String name) {        
+	private CompletableFuture<Boolean> command(final CommandSource player, String name) {        
 		Optional<World> world = this.plugin.getEServer().loadWorld(name);
 		// Si le monde n'existe pas
 		if (world.isPresent()) {
@@ -82,6 +81,6 @@ public class EWImport extends ESubCommand<EverMultiWorlds> {
 		} else {
 			player.sendMessage(EChat.of("World empty"));
 		}
-		return false;
+		return CompletableFuture.completedFuture(false);
 	}
 }
