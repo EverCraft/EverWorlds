@@ -31,20 +31,20 @@ public class EWMessage extends EMessage<EverMultiWorlds> {
 	}
 	
 	public enum EWMessages implements EnumMessage {
-		PREFIX("prefix", 				"[&4Ever&6&lWorlds&f] "),
-		DESCRIPTION("description",		"Gestionnaire des mondes"),
+		PREFIX("PREFIX", 				"[&4Ever&6&lWorlds&f] "),
+		DESCRIPTION("DESCRIPTION",		"Gestionnaire des mondes"),
 		
 		
-		CREATE_DESCRIPTION("create.description",		"Création d'un monde"),
-		CREATE_PLAYER("create.player",		"&7Vous avez créé le monde <world>."),
-		CREATE_WORLD("create.world",		"&6<world>"),
-		CREATE_WORLD_HOVER("create.worldHover",	  "&7Dimension : &6 <dimension>[RT]"
+		CREATE_DESCRIPTION("createDescription",		"Création d'un monde"),
+		CREATE_PLAYER("createPlayer",				"&7Vous avez créé le monde <world>."),
+		CREATE_WORLD("createWorld",					"&6<world>"),
+		CREATE_WORLD_HOVER("createWorldHover",	  "&7Dimension : &6 <dimension>[RT]"
 												+ "&7Generator : &6 <generator>[RT]"
 												+ "&7Seed : &6 <seed>"),
-		CREATE_ERROR_NAME("create.errorName",				"&c<world>"),
-		CREATE_ERROR_DIMENSION("create.errorDimension",		"&c<dimension>"),
-		CREATE_ERROR_GENERATOR("create.errorGenerator",		"&c<generator>"),
-		CREATE_ERROR_SEED("create.errorSeed",				"&c<seed>"),;
+		CREATE_ERROR_NAME("createErrorName",				"&c<world>"),
+		CREATE_ERROR_DIMENSION("createErrorDimension",		"&c<dimension>"),
+		CREATE_ERROR_GENERATOR("createErrorGenerator",		"&c<generator>"),
+		CREATE_ERROR_SEED("createErrorSeed",				"&c<seed>"),;
 		
 		private final String path;
 	    private final EMessageBuilder french;
