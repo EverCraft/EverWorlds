@@ -23,28 +23,27 @@ import com.google.common.base.Preconditions;
 import fr.evercraft.everapi.plugin.EnumPermission;
 
 public enum EWPermissions implements EnumPermission {
-	EVERMULTIWORLDS("command"),
+	EVERMULTIWORLDS("commands.execute"),
+	HELP("commands.help"),
+	RELOAD("commands.reload"),
 	
-	HELP("help"),
-	RELOAD("reload"),
+	CREATE("commands.create"),
+	DELETE("commands.delete"),
 	
-	CREATE("create"),
-	DELETE("delete"),
+	IMPORT("commands.import"),
+	COPY("commands.copy"),
 	
-	IMPORT("import"),
-	COPY("copy"),
+	LOAD("commands.load"),
+	UNLOAD("commands.unload"),
 	
-	LOAD("load"),
-	UNLOAD("unload"),
+	RENAME("commands.rename"),
+	SETSPAWN("commands.setspawn"),
+	PROPERTIES("commands.properties"),
 	
-	RENAME("rename"),
-	SETSPAWN("setspawn"),
-	PROPERTIES("properties"),
+	TELEPORT("commands.teleport"),
 	
-	TELEPORT("teleport"),
-	
-	LIST("list"),
-	INFO("info");
+	LIST("commands.list"),
+	INFO("commands.info");
 	
 	private final static String prefix = "evermultiworlds";
 	
