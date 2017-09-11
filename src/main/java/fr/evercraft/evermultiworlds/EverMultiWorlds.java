@@ -20,6 +20,8 @@ import org.spongepowered.api.plugin.Dependency;
 import org.spongepowered.api.plugin.Plugin;
 
 import fr.evercraft.everapi.EverAPI;
+import fr.evercraft.everapi.exception.PluginDisableException;
+import fr.evercraft.everapi.exception.ServerDisableException;
 import fr.evercraft.everapi.plugin.EPlugin;
 import fr.evercraft.evermultiworlds.command.sub.EWCreate;
 import fr.evercraft.evermultiworlds.command.sub.EWImport;
@@ -60,8 +62,9 @@ public class EverMultiWorlds extends EPlugin<EverMultiWorlds> {
 	protected void onStartServer() {
 	}
 
-	protected void onReload(){
-		this.reloadConfigurations();
+	@Override
+	protected void onReload() throws PluginDisableException, ServerDisableException {
+		super.onReload();
 	}
 	
 	protected void onDisable() {

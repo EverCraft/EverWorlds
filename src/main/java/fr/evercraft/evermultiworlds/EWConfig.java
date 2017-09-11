@@ -17,7 +17,6 @@
 package fr.evercraft.evermultiworlds;
 
 import fr.evercraft.everapi.plugin.file.EConfig;
-import fr.evercraft.everapi.plugin.file.EMessage;
 
 public class EWConfig extends EConfig<EverMultiWorlds> {
 
@@ -32,7 +31,6 @@ public class EWConfig extends EConfig<EverMultiWorlds> {
 	
 	@Override
 	public void loadDefault() {
-		addDefault("DEBUG", false, "Displays plugin performance in the logs");
-		addDefault("LANGUAGE", EMessage.FRENCH, "Select language messages", "Examples : ", "  French : FR_fr", "  English : EN_en");
+		this.configDefault();
 	}
 }
