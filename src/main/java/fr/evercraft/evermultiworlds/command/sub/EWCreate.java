@@ -128,7 +128,7 @@ public class EWCreate extends ESubCommand<EverMultiWorlds> {
 								// Le seed est incorrect
 								} catch(NumberFormatException e) {
 									EWMessages.CREATE_ERROR_SEED.sender()
-										.replace("<seed>", seed_name.get())
+										.replace("{seed}", seed_name.get())
 										.sendTo(player);
 								}
 							// Le nom, le type de dimension et le type de génération
@@ -139,7 +139,7 @@ public class EWCreate extends ESubCommand<EverMultiWorlds> {
 						// Le type de la génération est incorrect
 						} else {
 							EWMessages.CREATE_ERROR_GENERATOR.sender()
-								.replace("<generator>", generator_name.get())
+								.replace("{generator}", generator_name.get())
 								.sendTo(player);
 						}
 					// Le nom et le type de dimension
@@ -150,7 +150,7 @@ public class EWCreate extends ESubCommand<EverMultiWorlds> {
 				// Le type de la dimension est incorrect
 				} else {
 					EWMessages.CREATE_ERROR_DIMENSION.sender()
-						.replace("<dimension>", dimension_name.get())
+						.replace("{dimension}", dimension_name.get())
 						.sendTo(player);
 				}
 			// Uniquement le nom
@@ -160,7 +160,7 @@ public class EWCreate extends ESubCommand<EverMultiWorlds> {
 		// Un monde porte déjà ce nom
 		} else {
 			EWMessages.CREATE_ERROR_NAME.sender()
-				.replace("<world>", name)
+				.replace("{world}", name)
 				.sendTo(player);
 		}
 		return CompletableFuture.completedFuture(false);
@@ -191,7 +191,7 @@ public class EWCreate extends ESubCommand<EverMultiWorlds> {
 		try {
 			this.plugin.getEServer().loadWorld(this.plugin.getEServer().createWorldProperties(name, world));
 			EWMessages.CREATE_PLAYER.sender()
-				.replace("<world>", () -> this.getButtonPosition(world))
+				.replace("{world}", () -} this.getButtonPosition(world))
 				.sendTo(player);
 		} catch (IOException e) {
 			
@@ -201,11 +201,11 @@ public class EWCreate extends ESubCommand<EverMultiWorlds> {
 	
 	public Text getButtonPosition(final WorldArchetype world){
 		return EWMessages.CREATE_WORLD.getFormat()
-					.toText("<world>", world.getName()).toBuilder()
+					.toText("{world}", world.getName()).toBuilder()
 					.onHover(TextActions.showText(EWMessages.CREATE_WORLD_HOVER.getFormat().toText(
-								"<dimension>", world.getDimensionType().getName().toUpperCase(),
-								"<generator>", world.getGeneratorType().getName().toUpperCase(),
-								"<seed>", String.valueOf(world.getSeed()))))
+								"{dimension}", world.getDimensionType().getName().toUpperCase(),
+								"{generator}", world.getGeneratorType().getName().toUpperCase(),
+								"{seed}", String.valueOf(world.getSeed()))))
 					.build();
 	}
 }

@@ -36,15 +36,15 @@ public class EWMessage extends EMessage<EverMultiWorlds> {
 		
 		
 		CREATE_DESCRIPTION("createDescription",		"Création d'un monde"),
-		CREATE_PLAYER("createPlayer",				"&7Vous avez créé le monde <world>."),
-		CREATE_WORLD("createWorld",					"&6<world>"),
-		CREATE_WORLD_HOVER("createWorldHover",	  "&7Dimension : &6 <dimension>[RT]"
-												+ "&7Generator : &6 <generator>[RT]"
-												+ "&7Seed : &6 <seed>"),
-		CREATE_ERROR_NAME("createErrorName",				"&c<world>"),
-		CREATE_ERROR_DIMENSION("createErrorDimension",		"&c<dimension>"),
-		CREATE_ERROR_GENERATOR("createErrorGenerator",		"&c<generator>"),
-		CREATE_ERROR_SEED("createErrorSeed",				"&c<seed>"),;
+		CREATE_PLAYER("createPlayer",				"&7Vous avez créé le monde {world}."),
+		CREATE_WORLD("createWorld",					"&6{world}"),
+		CREATE_WORLD_HOVER("createWorldHover",	  "&7Dimension : &6 {dimension}[RT]"
+												+ "&7Generator : &6 {generator}[RT]"
+												+ "&7Seed : &6 {seed}"),
+		CREATE_ERROR_NAME("createErrorName",				"&c{world}"),
+		CREATE_ERROR_DIMENSION("createErrorDimension",		"&c{dimension}"),
+		CREATE_ERROR_GENERATOR("createErrorGenerator",		"&c{generator}"),
+		CREATE_ERROR_SEED("createErrorSeed",				"&c{seed}"),;
 		
 		private final String path;
 	    private final EMessageBuilder french;
