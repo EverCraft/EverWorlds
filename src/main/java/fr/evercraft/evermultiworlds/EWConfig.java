@@ -16,6 +16,9 @@
  */
 package fr.evercraft.evermultiworlds;
 
+import java.util.Arrays;
+import java.util.List;
+
 import fr.evercraft.everapi.plugin.file.EConfig;
 
 public class EWConfig extends EConfig<EverMultiWorlds> {
@@ -27,6 +30,14 @@ public class EWConfig extends EConfig<EverMultiWorlds> {
 	public void reload() {
 		super.reload();
 		this.plugin.getELogger().setDebug(this.isDebug());
+	}
+	
+	@Override
+	public List<String> getHeader() {
+		return 	Arrays.asList(	"####################################################### #",
+								"               EverMultiWorlds (By rexbut)               #",
+								"    For more information : https://docs.evercraft.fr     #",
+								"####################################################### #");
 	}
 	
 	@Override
