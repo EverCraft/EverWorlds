@@ -191,7 +191,7 @@ public class EWCreate extends ESubCommand<EverMultiWorlds> {
 		try {
 			this.plugin.getEServer().loadWorld(this.plugin.getEServer().createWorldProperties(name, world));
 			EWMessages.CREATE_PLAYER.sender()
-				.replace("{world}", () -} this.getButtonPosition(world))
+				.replace("{world}", () -> this.getButtonPosition(world))
 				.sendTo(player);
 		} catch (IOException e) {
 			
