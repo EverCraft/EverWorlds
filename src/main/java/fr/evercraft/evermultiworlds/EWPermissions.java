@@ -16,50 +16,61 @@
  */
 package fr.evercraft.evermultiworlds;
 
-import org.spongepowered.api.command.CommandSource;
-
-import com.google.common.base.Preconditions;
-
 import fr.evercraft.everapi.plugin.EnumPermission;
+import fr.evercraft.everapi.plugin.file.EnumMessage;
+import fr.evercraft.evermultiworlds.EWMessage.EWMessages;
 
 public enum EWPermissions implements EnumPermission {
-	EVERMULTIWORLDS("commands.execute"),
-	HELP("commands.help"),
-	RELOAD("commands.reload"),
+	EVERMULTIWORLDS("commands.execute", EWMessages.PERMISSIONS_COMMANDS_EXECUTE),
+	HELP("commands.help", EWMessages.PERMISSIONS_COMMANDS_HELP),
+	RELOAD("commands.reload", EWMessages.PERMISSIONS_COMMANDS_RELOAD),
 	
-	CREATE("commands.create"),
-	DELETE("commands.delete"),
+	CREATE("commands.create", EWMessages.PERMISSIONS_COMMANDS_CREATE),
+	DELETE("commands.delete", EWMessages.PERMISSIONS_COMMANDS_DELETE),
 	
-	IMPORT("commands.import"),
-	COPY("commands.copy"),
+	IMPORT("commands.import", EWMessages.PERMISSIONS_COMMANDS_IMPORT),
+	COPY("commands.copy", EWMessages.PERMISSIONS_COMMANDS_COPY),
 	
-	LOAD("commands.load"),
-	UNLOAD("commands.unload"),
+	LOAD("commands.load", EWMessages.PERMISSIONS_COMMANDS_LOAD),
+	UNLOAD("commands.unload", EWMessages.PERMISSIONS_COMMANDS_UNLOAD),
 	
-	RENAME("commands.rename"),
-	SETSPAWN("commands.setspawn"),
-	PROPERTIES("commands.properties"),
+	RENAME("commands.rename", EWMessages.PERMISSIONS_COMMANDS_RENAME),
+	SETSPAWN("commands.setspawn", EWMessages.PERMISSIONS_COMMANDS_SETSPAWN),
+	PROPERTIES("commands.properties", EWMessages.PERMISSIONS_COMMANDS_PROPERTIES),
 	
-	TELEPORT("commands.teleport"),
+	TELEPORT("commands.teleport", EWMessages.PERMISSIONS_COMMANDS_TELEPORT),
 	
-	LIST("commands.list"),
-	INFO("commands.info");
+	LIST("commands.list", EWMessages.PERMISSIONS_COMMANDS_LIST),
+	INFO("commands.info", EWMessages.PERMISSIONS_COMMANDS_INFO);
 	
-	private final static String prefix = "evermultiworlds";
+	private static final String PREFIX = "evermultiworlds";
 	
 	private final String permission;
+	private final EnumMessage message;
+	private final boolean value;
     
-    private EWPermissions(final String permission) {   	
-    	Preconditions.checkNotNull(permission, "La permission '" + this.name() + "' n'est pas définit");
-    	
-    	this.permission = permission;
+    private EWPermissions(final String permission, final EnumMessage message) {
+    	this(permission, message, false);
+    }
+    
+    private EWPermissions(final String permission, final EnumMessage message, final boolean value) {   	    	
+    	this.permission = PREFIX + "." + permission;
+    	this.message = message;
+    	this.value = value;
     }
 
+    @Override
     public String get() {
-		return EWPermissions.prefix + "." + this.permission;
+		return this.permission;
 	}
-    
-    public boolean has(CommandSource player) {
-    	return player.hasPermission(this.get());
-    }
+
+	@Override
+	public boolean getDefault() {
+		return this.value;
+	}
+
+	@Override
+	public EnumMessage getMessage() {
+		return this.message;
+	}
 }

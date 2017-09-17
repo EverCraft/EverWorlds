@@ -44,7 +44,23 @@ public class EWMessage extends EMessage<EverMultiWorlds> {
 		CREATE_ERROR_NAME("createErrorName",				"&c{world}"),
 		CREATE_ERROR_DIMENSION("createErrorDimension",		"&c{dimension}"),
 		CREATE_ERROR_GENERATOR("createErrorGenerator",		"&c{generator}"),
-		CREATE_ERROR_SEED("createErrorSeed",				"&c{seed}"),;
+		CREATE_ERROR_SEED("createErrorSeed",				"&c{seed}"),
+		
+		PERMISSIONS_COMMANDS_EXECUTE("permissionsCommandsExecute", ""),
+		PERMISSIONS_COMMANDS_HELP("permissionsCommandsHelp", ""),
+		PERMISSIONS_COMMANDS_RELOAD("permissionsCommandsReload", ""),
+		PERMISSIONS_COMMANDS_CREATE("permissionsCommandsCreate", ""),
+		PERMISSIONS_COMMANDS_DELETE("permissionsCommandsDelete", ""),
+		PERMISSIONS_COMMANDS_IMPORT("permissionsCommandsImport", ""),
+		PERMISSIONS_COMMANDS_COPY("permissionsCommandsCopy", ""),
+		PERMISSIONS_COMMANDS_LOAD("permissionsCommandsLoad", ""),
+		PERMISSIONS_COMMANDS_UNLOAD("permissionsCommandsUnload", ""),
+		PERMISSIONS_COMMANDS_RENAME("permissionsCommandsRename", ""),
+		PERMISSIONS_COMMANDS_SETSPAWN("permissionsCommandsSetspawn", ""),
+		PERMISSIONS_COMMANDS_PROPERTIES("permissionsCommandsProperties", ""),
+		PERMISSIONS_COMMANDS_TELEPORT("permissionsCommandsTeleport", ""),
+		PERMISSIONS_COMMANDS_LIST("permissionsCommandsList", ""),
+		PERMISSIONS_COMMANDS_INFO("permissionsCommandsInfo", "");
 		
 		private final String path;
 	    private final EMessageBuilder french;
