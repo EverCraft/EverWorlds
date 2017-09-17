@@ -31,36 +31,36 @@ public class EWMessage extends EMessage<EverMultiWorlds> {
 	}
 	
 	public enum EWMessages implements EnumMessage {
-		PREFIX("PREFIX", 				"[&4Ever&6&lWorlds&f] "),
-		DESCRIPTION("DESCRIPTION",		"Gestionnaire des mondes"),
+		PREFIX(						"[&4Ever&6&lWorlds&f] "),
+		DESCRIPTION(				"Gestionnaire des mondes"),
 		
 		
-		CREATE_DESCRIPTION("createDescription",		"Création d'un monde"),
-		CREATE_PLAYER("createPlayer",				"&7Vous avez créé le monde {world}."),
-		CREATE_WORLD("createWorld",					"&6{world}"),
-		CREATE_WORLD_HOVER("createWorldHover",	  "&7Dimension : &6 {dimension}[RT]"
-												+ "&7Generator : &6 {generator}[RT]"
-												+ "&7Seed : &6 {seed}"),
-		CREATE_ERROR_NAME("createErrorName",				"&c{world}"),
-		CREATE_ERROR_DIMENSION("createErrorDimension",		"&c{dimension}"),
-		CREATE_ERROR_GENERATOR("createErrorGenerator",		"&c{generator}"),
-		CREATE_ERROR_SEED("createErrorSeed",				"&c{seed}"),
+		CREATE_DESCRIPTION(			"Création d'un monde"),
+		CREATE_PLAYER(				"&7Vous avez créé le monde {world}."),
+		CREATE_WORLD(				"&6{world}"),
+		CREATE_WORLD_HOVER(	  		"&7Dimension : &6 {dimension}[RT]"
+								  + "&7Generator : &6 {generator}[RT]"
+								  + "&7Seed : &6 {seed}"),
+		CREATE_ERROR_NAME(			"&c{world}"),
+		CREATE_ERROR_DIMENSION(		"&c{dimension}"),
+		CREATE_ERROR_GENERATOR(		"&c{generator}"),
+		CREATE_ERROR_SEED(			"&c{seed}"),
 		
-		PERMISSIONS_COMMANDS_EXECUTE("permissionsCommandsExecute", ""),
-		PERMISSIONS_COMMANDS_HELP("permissionsCommandsHelp", ""),
-		PERMISSIONS_COMMANDS_RELOAD("permissionsCommandsReload", ""),
-		PERMISSIONS_COMMANDS_CREATE("permissionsCommandsCreate", ""),
-		PERMISSIONS_COMMANDS_DELETE("permissionsCommandsDelete", ""),
-		PERMISSIONS_COMMANDS_IMPORT("permissionsCommandsImport", ""),
-		PERMISSIONS_COMMANDS_COPY("permissionsCommandsCopy", ""),
-		PERMISSIONS_COMMANDS_LOAD("permissionsCommandsLoad", ""),
-		PERMISSIONS_COMMANDS_UNLOAD("permissionsCommandsUnload", ""),
-		PERMISSIONS_COMMANDS_RENAME("permissionsCommandsRename", ""),
-		PERMISSIONS_COMMANDS_SETSPAWN("permissionsCommandsSetspawn", ""),
-		PERMISSIONS_COMMANDS_PROPERTIES("permissionsCommandsProperties", ""),
-		PERMISSIONS_COMMANDS_TELEPORT("permissionsCommandsTeleport", ""),
-		PERMISSIONS_COMMANDS_LIST("permissionsCommandsList", ""),
-		PERMISSIONS_COMMANDS_INFO("permissionsCommandsInfo", "");
+		PERMISSIONS_COMMANDS_EXECUTE(""),
+		PERMISSIONS_COMMANDS_HELP(""),
+		PERMISSIONS_COMMANDS_RELOAD(""),
+		PERMISSIONS_COMMANDS_CREATE(""),
+		PERMISSIONS_COMMANDS_DELETE(""),
+		PERMISSIONS_COMMANDS_IMPORT(""),
+		PERMISSIONS_COMMANDS_COPY(""),
+		PERMISSIONS_COMMANDS_LOAD(""),
+		PERMISSIONS_COMMANDS_UNLOAD(""),
+		PERMISSIONS_COMMANDS_RENAME(""),
+		PERMISSIONS_COMMANDS_SETSPAWN(""),
+		PERMISSIONS_COMMANDS_PROPERTIES(""),
+		PERMISSIONS_COMMANDS_TELEPORT(""),
+		PERMISSIONS_COMMANDS_LIST(""),
+		PERMISSIONS_COMMANDS_INFO("");
 		
 		private final String path;
 	    private final EMessageBuilder french;
@@ -68,24 +68,23 @@ public class EWMessage extends EMessage<EverMultiWorlds> {
 	    private EMessageFormat message;
 	    private EMessageBuilder builder;
 	    
-	    private EWMessages(final String path, final String french) {   	
-	    	this(path, EMessageFormat.builder().chat(new EFormatString(french), true));
+	    private EWMessages(final String french) {   	
+	    	this(EMessageFormat.builder().chat(new EFormatString(french), true));
 	    }
 	    
-	    private EWMessages(final String path, final String french, final String english) {   	
-	    	this(path, 
-	    		EMessageFormat.builder().chat(new EFormatString(french), true), 
+	    private EWMessages(final String french, final String english) {   	
+	    	this(EMessageFormat.builder().chat(new EFormatString(french), true), 
 	    		EMessageFormat.builder().chat(new EFormatString(english), true));
 	    }
 	    
-	    private EWMessages(final String path, final EMessageBuilder french) {   	
-	    	this(path, french, french);
+	    private EWMessages(final EMessageBuilder french) {   	
+	    	this(french, french);
 	    }
 	    
-	    private EWMessages(final String path, final EMessageBuilder french, final EMessageBuilder english) {
+	    private EWMessages(final EMessageBuilder french, final EMessageBuilder english) {
 	    	Preconditions.checkNotNull(french, "Le message '" + this.name() + "' n'est pas définit");
 	    	
-	    	this.path = path;	    	
+	    	this.path = this.resolvePath();	    	
 	    	this.french = french;
 	    	this.english = english;
 	    	this.message = french.build();
