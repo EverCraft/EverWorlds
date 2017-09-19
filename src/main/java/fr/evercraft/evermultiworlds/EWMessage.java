@@ -119,4 +119,9 @@ public class EWMessage extends EMessage<EverMultiWorlds> {
 			this.builder = message;
 		}
 	}
+	
+	@Override
+	public EnumMessage getPrefix() {
+		return EWMessages.PREFIX;
+	}
 }
