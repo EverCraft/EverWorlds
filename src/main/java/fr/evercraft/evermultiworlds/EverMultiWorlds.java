@@ -81,4 +81,8 @@ public class EverMultiWorlds extends EPlugin<EverMultiWorlds> {
 	public EWConfig getConfigs() {
 		return this.configs;
 	}
+	
+	public EWPermissions[] getPermissions() {
+		return EWPermissions.values();
+	}
 }
